@@ -1,30 +1,17 @@
 import java.util.ArrayList;
-import java.util.Collections;
 
 class Solution {
     public int kthFactor(int n, int k) {
 
-        ArrayList<Integer> factors = new ArrayList<>();
+        int index_count = 0;
 
-        int left = 1;
-
-        for (; ; ) {
-            if (left == n / left && n%left == 0) {
-                factors.add(left);
-                break;
+        for ( int i=1; i <= n; i++ ){
+            if( n%i == 0) {
+                index_count++;
+                if ( index_count == k ) return i;
             }
-            if (left > n / left) break;
-            if (n % left == 0) {
-                factors.add(left);
-                factors.add(n / left);
-            }
-            left++;
         }
-        Collections.sort(factors);
-        System.out.println(factors);
-        if(k > factors.size()) return -1;
-        return factors.get(k - 1);
 
-
+        return -1;
     }
 }
